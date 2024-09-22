@@ -1,4 +1,7 @@
+package Controller;
+
 import java.io.File;
+import java.io.IOException;
 
 public class GestorFicheros {
 
@@ -8,7 +11,6 @@ public class GestorFicheros {
         File file = new File(path);
 
         // El metodo list() devuelve un array de ficheros que guardamos en una variable(array):
-        String[] listaStrings = file.list();
         File[] listaFiles = file.listFiles();
 
         // Recorrer el array con un for:
@@ -16,14 +18,24 @@ public class GestorFicheros {
             for (File ele : listaFiles) {
                 System.out.println(ele.getName());
 
-                // Añadimos la recursiva:
+                // Llamamos al metodo recursivo para inspeccionar las subcarpetas:
                 if (ele.isDirectory()) {
-                    String elePath = ele.getAbsolutePath();
-                    obtenerFicheros(elePath);
+                    obtenerSubficheros(ele);
                 }
             }
         } else {
             System.out.println("El directorio está vacío");
+        }
+    }
+
+    // Metodo recursivo para sacar los ficheros de una subcarpeta y tabularlos:
+    private void obtenerSubficheros(File subcarpeta) {
+        File[] listaSubcarpeta = subcarpeta.listFiles();
+        for (File ele : listaSubcarpeta) {
+            System.out.println("\t" + ele.getName());
+            if (ele.isDirectory()) {
+                obtenerSubficheros(ele);
+            }
         }
     }
 
@@ -32,7 +44,16 @@ public class GestorFicheros {
     */
     public void crearDirectorio(String path) {
         File file = new File(path);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("No se pudo crear el directorio.");
+            }
+        } else {
+            System.out.println("El directorio ya existe.");
+        }
     }
-
-    // 3 -> Listar el nombre de todos los ficheros del SISTEMA ( C:/User o /Users )
 }
+
+// 3 -> Listar el nombre de todos los ficheros del SISTEMA (C:/User o /Users)
