@@ -44,15 +44,8 @@ public class GestorFicheros {
     */
     public void crearDirectorio(String path) {
         File file = new File(path);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("No se pudo crear el directorio.");
-            }
-        } else {
-            System.out.println("El directorio ya existe.");
-        }
+        boolean newDirectory = file.mkdirs();
+        System.out.println(newDirectory);
     }
 }
 

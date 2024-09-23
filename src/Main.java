@@ -6,6 +6,6 @@ public class Main {
         // 1 -> Obtener todos los nombres de los ficheros de un directorio
         GestorFicheros gestor = new GestorFicheros();
         gestor.obtenerFicheros("src");
-        gestor.crearDirectorio("ejemplo.txt");
+        // gestor.crearDirectorio("");
     }
 }
