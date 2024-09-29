@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 
 public class LecturaFicheros {
 
@@ -9,7 +10,7 @@ public class LecturaFicheros {
         // Guardamos el path que le pasamos en un objeto:
         File file = new File(path);
 
-        // El metodo list() devuelve un array de ficheros que guardamos en una variable(array):
+        // El metodo listFiles() devuelve un array de ficheros que guardamos en una variable(array):
         File[] listaFiles = file.listFiles();
 
         // Recorrer el array con un for:
@@ -43,8 +44,28 @@ public class LecturaFicheros {
     */
     public void crearDirectorio(String path) {
         File file = new File(path);
-        boolean newDirectory = file.mkdirs();
-        System.out.println(newDirectory);
+        boolean subcarpeta = file.mkdirs();
+        if (subcarpeta) {
+            System.out.println("El directorio ha sido creado");
+        } else {
+            System.out.println("No se ha podido crear el directorio");
+        }
+    }
+
+    public void crearFichero(String path) {
+        File file = new File(path);
+        boolean newFile = false;
+        try {
+            newFile = file.createNewFile();
+            System.out.println("El fichero se ha creado");
+        } catch (IOException e) {
+            System.out.println("No se ha podido crear el fichero");
+        }
+    }
+
+    public void crearFicheroEnDirectorio(String path){
+        File file = new File(path);
+
     }
 }
 
