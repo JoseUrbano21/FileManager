@@ -1,9 +1,8 @@
-package Controller;
+package controller;
 
 import java.io.File;
-import java.io.IOException;
 
-public class GestorFicheros {
+public class LecturaFicheros {
 
     // 1 -> Obtener todos los nombres de los ficheros de un directorio
     public void obtenerFicheros(String path) {
